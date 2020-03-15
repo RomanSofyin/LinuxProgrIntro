@@ -26,9 +26,11 @@ bool init_library() {
 }
 
 int main() {
-    if ( init_library() )
+    if ( init_library() ) {
+        // here hello_message func pointer is initialized, we are ok to use it
         hello_message("Vasya");
-    else
+    } else {
         printf("init_library failed\n");
+    }
     return 0;
 }
