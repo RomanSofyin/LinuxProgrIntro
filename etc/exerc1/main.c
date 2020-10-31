@@ -15,6 +15,7 @@
 #define RETURN_CODE(...)                    RETURN_CODE_MACRO_CHOOSER(__VA_ARGS__)(__VA_ARGS__)
 
 int foo(int);
+void my_strcpy(char*, char*);
 
 int main() {
     int a = foo(-5);
@@ -25,6 +26,10 @@ int main() {
     super_var_1(double, abc, 3.14 + 10);
     my_printf("super_var_1 generated var = %f\n", super_abc_1);
 
+    #define str_for_cpy "abd"
+    char buf_for_cpy[sizeof(str_for_cpy)+1];
+    my_strcpy(&buf_for_cpy[0], str_for_cpy);
+
     if (b > 0) {
         RETURN_CODE(0);                     // return(0)
     } else {
@@ -34,4 +39,10 @@ int main() {
 
 int foo(int x) {
     return x*123;
+}
+
+/* strcpy: копирует t в s; версия 3 (с указателями) */
+void my_strcpy(char *s, char *t)
+{
+    while (*s++ = *t++);    // <==> while ((*s++ = *t++) != '\0');
 }
